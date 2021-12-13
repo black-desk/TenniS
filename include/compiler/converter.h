@@ -5,16 +5,15 @@
 #ifndef TENSORSTACK_COMPILER_CONVERTER_H
 #define TENSORSTACK_COMPILER_CONVERTER_H
 
-
-namespace ts {
-    /**
-     * convert between the Menu ang Graph
-     */
-    class Converter {
+namespace ts
+{
+  /**
+   * convert between the Menu ang Graph
+   */
+  class Converter {
     public:
-        using self = Converter;
-    };
-}
+      using self = Converter;
+  };
+}  // namespace ts
 
-
-#endif //TENSORSTACK_COMPILER_CONVERTER_H
+#endif  // TENSORSTACK_COMPILER_CONVERTER_H

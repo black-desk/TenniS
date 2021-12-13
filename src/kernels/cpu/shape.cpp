@@ -1,6 +1,6 @@
-#include <kernels/cpu/shape.h>
-#include <global/operator_factory.h>
 #include <backend/name.h>
+#include <global/operator_factory.h>
+#include <kernels/cpu/shape.h>
 
 using namespace ts;
 using namespace cpu;

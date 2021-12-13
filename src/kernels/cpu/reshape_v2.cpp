@@ -1,6 +1,6 @@
-#include <kernels/cpu/reshape_v2.h>
-#include <global/operator_factory.h>
 #include <backend/name.h>
+#include <global/operator_factory.h>
+#include <kernels/cpu/reshape_v2.h>
 
 using namespace ts;
 using namespace cpu;

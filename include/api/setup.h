@@ -11,14 +11,14 @@
 extern "C" {
 #endif
 
-/**
- * @return ts_true if succeed.
- * @note Happen nothing if failed.
- */
-TENNIS_C_API ts_bool ts_setup();
+  /**
+   * @return ts_true if succeed.
+   * @note Happen nothing if failed.
+   */
+  TENNIS_C_API ts_bool ts_setup();
 
 #ifdef __cplusplus
 }
 #endif
 
-#endif //TENNIS_API_SETUP_H
+#endif  // TENNIS_API_SETUP_H

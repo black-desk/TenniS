@@ -11,30 +11,31 @@
 #include "platform.h"
 
 #if TS_PLATFORM_CC_MSVC
-#define TS_NOEXCEPT
+#  define TS_NOEXCEPT
 #else
-#define TS_NOEXCEPT noexcept
+#  define TS_NOEXCEPT noexcept
 #endif
 
 #include "api.h"
 
-namespace ts {
-    class TS_DEBUG_API Exception : public std::exception {
+namespace ts
+{
+  class TS_DEBUG_API Exception : public std::exception {
     public:
-        Exception();
-        explicit Exception(const std::string &message);
+      Exception();
+      explicit Exception(const std::string &message);
 
-        const char *what() const TS_NOEXCEPT override;
-
+      const char *what() const TS_NOEXCEPT override;
     private:
-        std::string m_message;
-    };
+      std::string m_message;
+  };
 
-    class TS_DEBUG_API NullPointerException : public Exception {
+  class TS_DEBUG_API NullPointerException : public Exception {
     public:
-        NullPointerException() : Exception() {}
-        explicit NullPointerException(const std::string &message) : Exception(message) {}
-    };
-}
+      NullPointerException() : Exception() {}
+      explicit NullPointerException(const std::string &message) :
+        Exception(message) {}
+  };
+}  // namespace ts
 
-#endif //TENSORSTACK_UTILS_EXCEPT_H
+#endif  // TENSORSTACK_UTILS_EXCEPT_H

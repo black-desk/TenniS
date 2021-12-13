@@ -4,18 +4,18 @@
 #include "backend/base/base_sigmoid.h"
 #include "operator_on_cpu.h"
 
-namespace ts {
-	namespace cpu {
-		class Sigmoid : public OperatorOnCPU<base::Sigmoid> {
-		public:
-		    using self = Sigmoid;
-			using supper = OperatorOnCPU<base::Sigmoid>;
+namespace ts
+{
+  namespace cpu
+  {
+    class Sigmoid : public OperatorOnCPU<base::Sigmoid> {
+      public:
+        using self   = Sigmoid;
+        using supper = OperatorOnCPU<base::Sigmoid>;
 
-            void active(const Tensor &x, Tensor &out) override;
-		};
-	}
-}
+        void active(const Tensor &x, Tensor &out) override;
+    };
+  }  // namespace cpu
+}  // namespace ts
 
-
-
-#endif //TENSORSTACK_KERNELS_CPU_SIGMOID_H
+#endif  // TENSORSTACK_KERNELS_CPU_SIGMOID_H

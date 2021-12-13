@@ -7,38 +7,38 @@
 
 #include "operator_on_device.h"
 
-namespace ts {
-    namespace base {
-        class Cast : public OperatorOnDevice {
-        public:
-            using self = Cast;
-            using supper = OperatorOnDevice;
+namespace ts
+{
+  namespace base
+  {
+    class Cast : public OperatorOnDevice {
+      public:
+        using self   = Cast;
+        using supper = OperatorOnDevice;
 
-            Cast(DTYPE dtype);
+        Cast(DTYPE dtype);
 
-            int run(Stack &stack) override;
+        int run(Stack &stack) override;
 
-            int infer(Stack &stack, std::vector<Tensor::Prototype> &output) override;
+        int infer(
+          Stack &stack, std::vector<Tensor::Prototype> &output) override;
 
-            virtual void cast(const Tensor &x, DTYPE dtype, Tensor &out);
+        virtual void cast(const Tensor &x, DTYPE dtype, Tensor &out);
+      protected:
+        void set_dtype(DTYPE dtype);
+      private:
+        DTYPE m_dtype;
+    };
 
-        protected:
-            void set_dtype(DTYPE dtype);
+    template <DTYPE _dtype>
+    class CastTo : public Cast {
+      public:
+        using self   = CastTo;
+        using supper = Cast;
 
-        private:
-            DTYPE m_dtype;
-        };
+        CastTo() : supper(_dtype) {}
+    };
+  }  // namespace base
+}  // namespace ts
 
-        template <DTYPE _dtype>
-        class CastTo : public Cast {
-        public:
-            using self = CastTo;
-            using supper = Cast;
-
-            CastTo() : supper(_dtype) {}
-        };
-    }
-}
-
-
-#endif //TENSORSTACK_BACKEND_BASE_BASE_CAST_H
+#endif  // TENSORSTACK_BACKEND_BASE_BASE_CAST_H

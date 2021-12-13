@@ -8,13 +8,13 @@
 // version 01.00.00.00
 #define TS_VERSION 1000000
 
-#include "setup.h"
 #include "common.h"
 #include "device.h"
-#include "tensor.h"
-#include "module.h"
 #include "image_filter.h"
-#include "workbench.h"
 #include "intime.h"
+#include "module.h"
+#include "setup.h"
+#include "tensor.h"
+#include "workbench.h"
 
-#endif //TENNIS_API_TENNIS_H
+#endif  // TENNIS_API_TENNIS_H

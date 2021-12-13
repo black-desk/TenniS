@@ -6,10 +6,9 @@
 #define TENNIS_API_DECLARE_TENSOR_H
 
 #include "api/tensor.h"
-#include "declaration.h"
-
 #include "core/tensor.h"
+#include "declaration.h"
 
 DECLARE_API_TYPE(ts_Tensor, ts::Tensor)
 
-#endif //TENNIS_API_DECLARE_TENSOR_H
+#endif  // TENNIS_API_DECLARE_TENSOR_H

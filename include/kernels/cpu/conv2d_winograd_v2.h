@@ -7,26 +7,28 @@
 
 #include "operator_on_cpu.h"
 
-namespace ts{
-    namespace cpu{
-        class Conv2DWinogradV2 : public OperatorOnAny<Operator>{
-        public:
-            using self = Conv2DWinogradV2;
-            using supper = OperatorOnAny<Operator>;
+namespace ts
+{
+  namespace cpu
+  {
+    class Conv2DWinogradV2 : public OperatorOnAny<Operator> {
+      public:
+        using self   = Conv2DWinogradV2;
+        using supper = OperatorOnAny<Operator>;
 
-            Conv2DWinogradV2();
+        Conv2DWinogradV2();
 
-            void init() override;
+        void init() override;
 
-            int run(Stack &stack) override;
+        int run(Stack &stack) override;
 
-            int infer(Stack &stack, std::vector<Tensor::Prototype> &output) override;
+        int infer(
+          Stack &stack, std::vector<Tensor::Prototype> &output) override;
+      private:
+        Operator::shared m_op_conv2d_winograd;
+        Tensor           m_int_padding4x2;  // save pre set padding
+    };
+  }  // namespace cpu
+}  // namespace ts
 
-        private:
-            Operator::shared m_op_conv2d_winograd;
-            Tensor m_int_padding4x2; // save pre set padding
-        };
-    }
-}
-
-#endif //TENSORSTACK_KERNELS_CPU_CONV2D_WINOGRAD_V2_H
+#endif  // TENSORSTACK_KERNELS_CPU_CONV2D_WINOGRAD_V2_H

@@ -7,24 +7,24 @@
 
 #include "base_new_shape.h"
 
-namespace ts {
-    namespace base {
-        class Flatten : public NewShape {
-        public:
-            using self = Flatten;
-            using supper = NewShape;
+namespace ts
+{
+  namespace base
+  {
+    class Flatten : public NewShape {
+      public:
+        using self   = Flatten;
+        using supper = NewShape;
 
-            Flatten();
+        Flatten();
 
-            void init() override;
+        void init() override;
 
-            Shape newshape(const Tensor &x) final;
+        Shape newshape(const Tensor &x) final;
+      private:
+        int m_dim = 1;
+    };
+  }  // namespace base
+}  // namespace ts
 
-        private:
-            int m_dim = 1;
-        };
-    }
-}
-
-
-#endif //TENSORSTACK_BACKEND_BASE_BASE_FLATTEN_H
+#endif  // TENSORSTACK_BACKEND_BASE_BASE_FLATTEN_H

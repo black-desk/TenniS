@@ -11,17 +11,17 @@ extern "C" {
 
 #include <stdint.h>
 
-/**
- * Device description
- */
-struct ts_Device {
-    const char *type;   ///< device type, like cpu or gpu
-    int32_t id;         ///< device id
-};
-typedef struct ts_Device ts_Device;
+  /**
+   * Device description
+   */
+  struct ts_Device {
+      const char *type;  ///< device type, like cpu or gpu
+      int32_t     id;    ///< device id
+  };
+  typedef struct ts_Device ts_Device;
 
 #ifdef __cplusplus
 }
 #endif
 
-#endif //TENNIS_API_DEVICE_H
+#endif  // TENNIS_API_DEVICE_H

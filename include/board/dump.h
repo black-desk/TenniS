@@ -7,10 +7,12 @@
 
 #include "runtime/workbench.h"
 
-
-namespace ts {
-    TS_DEBUG_API std::vector<Tensor> track(const std::string &dump_root, Workbench::shared bench, const std::vector<Tensor> &input);
+namespace ts
+{
+  TS_DEBUG_API std::vector<Tensor> track(
+    const std::string         &dump_root,
+    Workbench::shared          bench,
+    const std::vector<Tensor> &input);
 }
 
-
-#endif //TENSORSTACK_BOARD_DUMP_H
+#endif  // TENSORSTACK_BOARD_DUMP_H

@@ -3,12 +3,12 @@
 
 #include "backend/base/base_cast_v2.h"
 
+namespace ts
+{
+  namespace cpu
+  {
+    using CastV2 = OperatorOnAny<base::CastV2>;
+  }
+}  // namespace ts
 
-namespace ts {
-	namespace cpu {
-	    using CastV2 = OperatorOnAny<base::CastV2>;
-	}
-}
-
-
-#endif //TENSORSTACK_KERNELS_CPU_TO_FLOAT_H
+#endif  // TENSORSTACK_KERNELS_CPU_TO_FLOAT_H

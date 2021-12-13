@@ -4,18 +4,19 @@
 #include "backend/base/base_prelu.h"
 #include "operator_on_cpu.h"
 
-namespace ts {
-	namespace cpu {
-		class PReLU : public OperatorOnCPU<base::PReLU> {
-		public:
-		    using self = PReLU;
-			using supper = OperatorOnCPU<base::PReLU>;
+namespace ts
+{
+  namespace cpu
+  {
+    class PReLU : public OperatorOnCPU<base::PReLU> {
+      public:
+        using self   = PReLU;
+        using supper = OperatorOnCPU<base::PReLU>;
 
-            void prelu(const Tensor &x, const Tensor &slope, int dim, Tensor &out) override;
-		};
-	}
-}
+        void prelu(
+          const Tensor &x, const Tensor &slope, int dim, Tensor &out) override;
+    };
+  }  // namespace cpu
+}  // namespace ts
 
-
-
-#endif //TENSORSTACK_KERNELS_CPU_PRELU_H
+#endif  // TENSORSTACK_KERNELS_CPU_PRELU_H

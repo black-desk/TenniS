@@ -7,23 +7,23 @@
 
 #include "base_activation.h"
 
-namespace ts {
-    namespace base {
-        class ReLUMax : public Activation {
-        public:
-            ReLUMax();
+namespace ts
+{
+  namespace base
+  {
+    class ReLUMax : public Activation {
+      public:
+        ReLUMax();
 
-            void init() override;
+        void init() override;
 
-            void active(const Tensor &x, Tensor &out) final;
+        void active(const Tensor &x, Tensor &out) final;
 
-            virtual void relu_max(const Tensor &x, float max, Tensor &out) = 0;
+        virtual void relu_max(const Tensor &x, float max, Tensor &out) = 0;
+      private:
+        float m_max;
+    };
+  }  // namespace base
+}  // namespace ts
 
-        private:
-            float m_max;
-        };
-    }
-}
-
-
-#endif //TENSORSTACK_BACKEND_BASE_BASE_RELU_MAX_H
+#endif  // TENSORSTACK_BACKEND_BASE_BASE_RELU_MAX_H

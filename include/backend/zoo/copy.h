@@ -5,27 +5,27 @@
 #ifndef TENSORSTACK_BACKEND_ZOO_COPY_H
 #define TENSORSTACK_BACKEND_ZOO_COPY_H
 
-
 #include <runtime/operator.h>
 
-namespace ts {
-    namespace zoo {
-        class Copy : public Operator {
-        public:
-            using self = Copy;
-            using supper = Operator;
+namespace ts
+{
+  namespace zoo
+  {
+    class Copy : public Operator {
+      public:
+        using self   = Copy;
+        using supper = Operator;
 
-            void init() override;
+        void init() override;
 
-            int run(Stack &stack) override;
+        int run(Stack &stack) override;
 
-            int infer(Stack &stack, std::vector<Tensor::Prototype> &output) override;
+        int infer(
+          Stack &stack, std::vector<Tensor::Prototype> &output) override;
+      private:
+        int m_output_count = 1;
+    };
+  }  // namespace zoo
+}  // namespace ts
 
-        private:
-            int m_output_count = 1;
-        };
-    }
-}
-
-
-#endif //TENSORSTACK_BACKEND_ZOO_COPY_H
+#endif  // TENSORSTACK_BACKEND_ZOO_COPY_H

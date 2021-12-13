@@ -7,19 +7,21 @@
 
 #include "operator_on_device.h"
 
-namespace ts {
-    namespace base {
-        class GetShape : public OperatorOnDevice {
-        public:
-            using self = GetShape;
-            using supper = OperatorOnDevice;
+namespace ts
+{
+  namespace base
+  {
+    class GetShape : public OperatorOnDevice {
+      public:
+        using self   = GetShape;
+        using supper = OperatorOnDevice;
 
-            int run(Stack &stack) override;
+        int run(Stack &stack) override;
 
-            int infer(Stack &stack, std::vector<Tensor::Prototype> &output) override;
-        };
-    }
-}
+        int infer(
+          Stack &stack, std::vector<Tensor::Prototype> &output) override;
+    };
+  }  // namespace base
+}  // namespace ts
 
-
-#endif //TENSORSTACK_BACKEND_BASE_BASE_SHAPE_H
+#endif  // TENSORSTACK_BACKEND_BASE_BASE_SHAPE_H

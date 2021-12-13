@@ -5,94 +5,102 @@
 #ifndef TENNIS_API_CPP_PROGORAM_H
 #define TENNIS_API_CPP_PROGORAM_H
 
-#include "../program.h"
-
-#include "except.h"
-#include "device.h"
-#include "module.h"
-
 #include <string>
 
-namespace ts {
-    namespace api {
-        /**
-         * @see ts_Program
-         */
-        class Program {
-        public:
-            using self = Program;
-            using raw = ts_Program;
+#include "../program.h"
+#include "device.h"
+#include "except.h"
+#include "module.h"
 
-            using shared = std::shared_ptr<self>;
-            using shared_raw = std::shared_ptr<raw>;
+namespace ts
+{
+  namespace api
+  {
+    /**
+     * @see ts_Program
+     */
+    class Program {
+      public:
+        using self = Program;
+        using raw  = ts_Program;
 
-            static self NewRef(raw *ptr) { return self(ptr); }
+        using shared     = std::shared_ptr<self>;
+        using shared_raw = std::shared_ptr<raw>;
 
-            Program(const self &) = default;
+        static self NewRef(raw *ptr) { return self(ptr); }
 
-            Program &operator=(const self &) = default;
+        Program(const self &) = default;
 
-            raw *get_raw() const { return m_impl.get(); }
+        Program &operator=(const self &) = default;
 
-            bool operator==(std::nullptr_t) const { return get_raw() == nullptr; }
+        raw *get_raw() const { return m_impl.get(); }
 
-            bool operator!=(std::nullptr_t) const { return get_raw() != nullptr; }
+        bool operator==(std::nullptr_t) const { return get_raw() == nullptr; }
 
-            Program(std::nullptr_t) {}
+        bool operator!=(std::nullptr_t) const { return get_raw() != nullptr; }
 
-            Program() = default;
+        Program(std::nullptr_t) {}
 
-            static Program Compile(const Module &module, const Device &device) {
-                return Compile(module.get_raw(), device.get_raw());
-            }
+        Program() = default;
 
-            static Program Compile(const ts_Module *module, const Device &device) {
-                return Compile(module, device.get_raw());
-            }
+        static Program Compile(const Module &module, const Device &device) {
+          return Compile(module.get_raw(), device.get_raw());
+        }
 
-            static Program Compile(const Module &module, const ts_Device *device) {
-                return Compile(module.get_raw(), device);
-            }
+        static Program Compile(const ts_Module *module, const Device &device) {
+          return Compile(module, device.get_raw());
+        }
 
-            static Program Compile(const ts_Module *module, const ts_Device *device) {
-                Program loaded(ts_Program_Compile(module, device));
-                TS_API_AUTO_CHECK(loaded.m_impl != nullptr);
-                return std::move(loaded);
-            }
+        static Program Compile(const Module &module, const ts_Device *device) {
+          return Compile(module.get_raw(), device);
+        }
 
-            static Program Compile(const Module &module, const Device &device, const std::string &options) {
-                Program loaded(ts_Program_Compile_v2(module.get_raw(), device.get_raw(), options.c_str()));
-                TS_API_AUTO_CHECK(loaded.m_impl != nullptr);
-                return std::move(loaded);
-            }
+        static Program Compile(
+          const ts_Module *module, const ts_Device *device) {
+          Program loaded(ts_Program_Compile(module, device));
+          TS_API_AUTO_CHECK(loaded.m_impl != nullptr);
+          return std::move(loaded);
+        }
 
-            Program clone() const {
-                Program dolly(ts_Program_clone(m_impl.get()));
-                TS_API_AUTO_CHECK(dolly.m_impl != nullptr);
-                return std::move(dolly);
-            }
+        static Program Compile(
+          const Module      &module,
+          const Device      &device,
+          const std::string &options) {
+          Program loaded(ts_Program_Compile_v2(
+            module.get_raw(), device.get_raw(), options.c_str()));
+          TS_API_AUTO_CHECK(loaded.m_impl != nullptr);
+          return std::move(loaded);
+        }
 
-            int input_count() const {
-                return ts_Program_input_count(m_impl.get());
-            }
+        Program clone() const {
+          Program dolly(ts_Program_clone(m_impl.get()));
+          TS_API_AUTO_CHECK(dolly.m_impl != nullptr);
+          return std::move(dolly);
+        }
 
-            int output_count() const {
-                return ts_Program_output_count(m_impl.get());
-            }
+        int input_count() const { return ts_Program_input_count(m_impl.get()); }
 
-            void set_operator_param(const std::string &node_name, const std::string &param, const Tensor &value) {
-                TS_API_AUTO_CHECK(ts_Program_set_operator_param(
-                        m_impl.get(), node_name.c_str(), param.c_str(), value.get_raw()))
-            }
+        int output_count() const {
+          return ts_Program_output_count(m_impl.get());
+        }
 
-        private:
-            Program(raw *ptr) : m_impl(pack(ptr)) {}
+        void set_operator_param(
+          const std::string &node_name,
+          const std::string &param,
+          const Tensor      &value) {
+          TS_API_AUTO_CHECK(ts_Program_set_operator_param(
+            m_impl.get(), node_name.c_str(), param.c_str(), value.get_raw()))
+        }
+      private:
+        Program(raw *ptr) : m_impl(pack(ptr)) {}
 
-            static shared_raw pack(raw *ptr) { return shared_raw(ptr, ts_free_Program); }
+        static shared_raw pack(raw *ptr) {
+          return shared_raw(ptr, ts_free_Program);
+        }
 
-            shared_raw m_impl;
-        };
-    }
-}
+        shared_raw m_impl;
+    };
+  }  // namespace api
+}  // namespace ts
 
-#endif //TENNIS_API_CPP_PROGORAM_H
+#endif  // TENNIS_API_CPP_PROGORAM_H

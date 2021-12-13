@@ -7,26 +7,26 @@
 
 #include "base_new_shape.h"
 
-namespace ts {
-    namespace base {
-        class Reshape : public NewShape {
-        public:
-            using self = Reshape;
-            using supper = NewShape;
+namespace ts
+{
+  namespace base
+  {
+    class Reshape : public NewShape {
+      public:
+        using self   = Reshape;
+        using supper = NewShape;
 
-            Reshape();
+        Reshape();
 
-            void init() override;
+        void init() override;
 
-            Shape newshape(const Tensor &x) override;
+        Shape newshape(const Tensor &x) override;
+      private:
+        Shape m_shape;
+        int   m_broadcast_dim     = -1;
+        int   m_count_without_dim = -1;
+    };
+  }  // namespace base
+}  // namespace ts
 
-        private:
-            Shape m_shape;
-            int m_broadcast_dim = -1;
-            int m_count_without_dim = -1;
-        };
-    }
-}
-
-
-#endif //TENSORSTACK_BACKEND_BASE_BASE_RESHAPE_H
+#endif  // TENSORSTACK_BACKEND_BASE_BASE_RESHAPE_H

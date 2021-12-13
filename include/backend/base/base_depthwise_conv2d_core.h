@@ -7,16 +7,18 @@
 
 #include "base_conv2d_core.h"
 
-namespace ts {
-    namespace base {
-        using DepthwiseConv2DCore = Conv2DCore;
+namespace ts
+{
+  namespace base
+  {
+    using DepthwiseConv2DCore = Conv2DCore;
 
-        template <typename Conv2D, typename Core>
-        using DepthwiseConv2DWithCore = Conv2DWithCore<Conv2D, Core>;
+    template <typename Conv2D, typename Core>
+    using DepthwiseConv2DWithCore = Conv2DWithCore<Conv2D, Core>;
 
-        template <typename Conv2D, typename Core>
-        using PackedDepthwiseConv2DWithCore = PackedConv2DWithCore<Conv2D, Core>;
-    }
-}
+    template <typename Conv2D, typename Core>
+    using PackedDepthwiseConv2DWithCore = PackedConv2DWithCore<Conv2D, Core>;
+  }  // namespace base
+}  // namespace ts
 
-#endif //TENSORSTACK_BACKEND_BASE_BASE_DEPTHWISE_CONV2D_CORE_H
+#endif  // TENSORSTACK_BACKEND_BASE_BASE_DEPTHWISE_CONV2D_CORE_H

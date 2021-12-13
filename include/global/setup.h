@@ -7,9 +7,9 @@
 
 #include <utils/api.h>
 
-namespace ts {
-    TS_DEBUG_API void setup();
+namespace ts
+{
+  TS_DEBUG_API void setup();
 }
 
-
-#endif //TENSORSTACK_GLOBAL_SETUP_H
+#endif  // TENSORSTACK_GLOBAL_SETUP_H

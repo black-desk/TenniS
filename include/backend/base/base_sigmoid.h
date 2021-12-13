@@ -7,10 +7,12 @@
 
 #include "base_activation.h"
 
-namespace ts {
-    namespace base {
-        using Sigmoid = Activation;
-    }
-}
+namespace ts
+{
+  namespace base
+  {
+    using Sigmoid = Activation;
+  }
+}  // namespace ts
 
-#endif //TENSORSTACK_BACKEND_BASE_BASE_SIGMOID_H
+#endif  // TENSORSTACK_BACKEND_BASE_BASE_SIGMOID_H

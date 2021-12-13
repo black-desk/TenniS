@@ -5,34 +5,33 @@
 #ifndef TENSORSTACK_COMPILER_ZIPPER_H
 #define TENSORSTACK_COMPILER_ZIPPER_H
 
-
 #include <core/device.h>
+
 #include "module/graph.h"
 
-namespace ts {
-    class ZipperOption;
-    /**
-     * zip TGraph to ZGraph
-     * may remove or add nodes
-     */
-    class Zipper {
+namespace ts
+{
+  class ZipperOption;
+  /**
+   * zip TGraph to ZGraph
+   * may remove or add nodes
+   */
+  class Zipper {
     public:
-        using self = Zipper;
+      using self = Zipper;
 
-        explicit Zipper(const ComputingDevice &device);
+      explicit Zipper(const ComputingDevice &device);
 
-        explicit Zipper(const ComputingDevice &device, const std::string &params);
+      explicit Zipper(const ComputingDevice &device, const std::string &params);
 
-        ~Zipper();
+      ~Zipper();
 
-        std::vector<Node> zip(const std::vector<Node> &nodes) const;
-
+      std::vector<Node> zip(const std::vector<Node> &nodes) const;
     private:
-        ComputingDevice m_device;
+      ComputingDevice m_device;
 
-        std::vector<const ZipperOption *> m_options;
-    };
-}
+      std::vector<const ZipperOption *> m_options;
+  };
+}  // namespace ts
 
-
-#endif //TENSORSTACK_COMPILER_ZIPPER_H
+#endif  // TENSORSTACK_COMPILER_ZIPPER_H

@@ -7,32 +7,26 @@
 
 // #include <OpenBLAS/cblas.h>
 
-namespace ts {
-    namespace blas {
-        enum Order {
-            RowMajor = 101,
-            ColMajor = 102
-        };
-        enum Transpose {
-            NoTrans = 111,
-            Trans = 112
-        };
-    }
+namespace ts
+{
+  namespace blas
+  {
+    enum Order { RowMajor = 101, ColMajor = 102 };
+    enum Transpose { NoTrans = 111, Trans = 112 };
+  }  // namespace blas
 
-    namespace gpu {
-        namespace cublas {
-            enum Order {
-                RowMajor = 101,
-                ColMajor = 102
-            };
-            enum Transpose {
-                NoTrans = 0,
-                Trans = 1,
-                //ConjugateTrans = 2
-            };
-        }
-    }
-}
+  namespace gpu
+  {
+    namespace cublas
+    {
+      enum Order { RowMajor = 101, ColMajor = 102 };
+      enum Transpose {
+        NoTrans = 0,
+        Trans   = 1,
+        // ConjugateTrans = 2
+      };
+    }  // namespace cublas
+  }    // namespace gpu
+}  // namespace ts
 
-
-#endif //TENSORSTACK_KERNELS_COMMON_BLAS_H
+#endif  // TENSORSTACK_KERNELS_COMMON_BLAS_H

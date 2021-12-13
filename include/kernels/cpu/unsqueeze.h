@@ -3,12 +3,12 @@
 
 #include "backend/base/base_unsqueeze.h"
 
+namespace ts
+{
+  namespace cpu
+  {
+    using Unsqueeze = OperatorOnAny<base::Unsqueeze>;
+  }
+}  // namespace ts
 
-namespace ts {
-	namespace cpu {
-	    using Unsqueeze = OperatorOnAny<base::Unsqueeze>;
-	}
-}
-
-
-#endif //TENSORSTACK_KERNELS_CPU_UNSQUEEZE_H
+#endif  // TENSORSTACK_KERNELS_CPU_UNSQUEEZE_H

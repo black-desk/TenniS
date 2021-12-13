@@ -7,18 +7,19 @@
 
 #include "../instruction.h"
 
-namespace ts {
-    namespace instruction {
-        class TS_DEBUG_API Tensor {
-        public:
-            // [-size, +1, e]
-            static Instruction::shared pack(size_t size);
+namespace ts
+{
+  namespace instruction
+  {
+    class TS_DEBUG_API Tensor {
+      public:
+        // [-size, +1, e]
+        static Instruction::shared pack(size_t size);
 
-            // [-1, +1, e]
-            static Instruction::shared field(int index);
-        };
-    }
-}
+        // [-1, +1, e]
+        static Instruction::shared field(int index);
+    };
+  }  // namespace instruction
+}  // namespace ts
 
-
-#endif //TENSORSTACK_RUNTIME_INSTRUCTION_TENSOR_INSTRUCTION_H
+#endif  // TENSORSTACK_RUNTIME_INSTRUCTION_TENSOR_INSTRUCTION_H

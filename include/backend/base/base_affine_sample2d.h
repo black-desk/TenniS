@@ -8,41 +8,49 @@
 #include "backend/common_structure.h"
 #include "operator_on_device.h"
 
-namespace ts {
-    namespace base {
-        enum class AffineOuterMode : int32_t {
-            NEAREST = 0,
-            VALUE = 1
-        };
-        
-       
-        class Affine_Sample2D : public OperatorOnDevice {
-        public:
-            using self = Affine_Sample2D;
-            using supper = OperatorOnDevice;
+namespace ts
+{
+  namespace base
+  {
+    enum class AffineOuterMode : int32_t { NEAREST = 0, VALUE = 1 };
 
-            Affine_Sample2D();
+    class Affine_Sample2D : public OperatorOnDevice {
+      public:
+        using self   = Affine_Sample2D;
+        using supper = OperatorOnDevice;
 
-            void init() override;
+        Affine_Sample2D();
 
-            int run(Stack &stack) override;
+        void init() override;
 
-            int infer(Stack &stack, std::vector<Tensor::Prototype> &output) override;
+        int run(Stack &stack) override;
 
-            virtual void affine_sample_run(const Tensor &x, float rz00, float rz01, float rz02, float rz10, float rz11, float rz12,
-                                           float rz20, float rz21, float rz22, Affine_Sample2DType type, int dim,
-                                           AffineOuterMode outer_mode, float outer_value,
-                                           Tensor &out) = 0;
+        int infer(
+          Stack &stack, std::vector<Tensor::Prototype> &output) override;
 
-        protected:
-
-            Affine_Sample2DType m_type;
-            int m_dim;
-            AffineOuterMode m_outer_mode = AffineOuterMode::NEAREST;
-            float m_outer_value = 0;
-        };
-    }
-}
-
+        virtual void affine_sample_run(
+          const Tensor       &x,
+          float               rz00,
+          float               rz01,
+          float               rz02,
+          float               rz10,
+          float               rz11,
+          float               rz12,
+          float               rz20,
+          float               rz21,
+          float               rz22,
+          Affine_Sample2DType type,
+          int                 dim,
+          AffineOuterMode     outer_mode,
+          float               outer_value,
+          Tensor             &out) = 0;
+      protected:
+        Affine_Sample2DType m_type;
+        int                 m_dim;
+        AffineOuterMode     m_outer_mode  = AffineOuterMode::NEAREST;
+        float               m_outer_value = 0;
+    };
+  }  // namespace base
+}  // namespace ts
 
 #endif

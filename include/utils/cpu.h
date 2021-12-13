@@ -4,29 +4,22 @@
 #include "platform.h"
 #include "utils/api.h"
 
-namespace ts{
+namespace ts
+{
 
-    class TS_DEBUG_API CpuEnable{
-
+  class TS_DEBUG_API CpuEnable {
     public:
-        enum CpuPowerMode{
-            BALANCE = 0,
-            BIGCORE = 1,
-            LITTLECORE = 2
-        };  
-
+      enum CpuPowerMode { BALANCE = 0, BIGCORE = 1, LITTLECORE = 2 };
     public:
-        CpuEnable(){}
-        ~CpuEnable(){}
-
+      CpuEnable() {}
+      ~CpuEnable() {}
     public:
-        static int get_cpu_num();
-        static int get_cpu_big_num();
-        static int get_cpu_little_num();
-        static bool set_power_mode(CpuPowerMode mode);
-        static CpuPowerMode get_power_mode();
-        
-    };
-}
+      static int          get_cpu_num();
+      static int          get_cpu_big_num();
+      static int          get_cpu_little_num();
+      static bool         set_power_mode(CpuPowerMode mode);
+      static CpuPowerMode get_power_mode();
+  };
+}  // namespace ts
 
-#endif //TENSORSTACK_UTILS_CPU_H
+#endif  // TENSORSTACK_UTILS_CPU_H

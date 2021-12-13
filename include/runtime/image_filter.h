@@ -6,106 +6,111 @@
 #define TENSORSTACK_RUNTIME_IMAGE_FILTER_H
 
 #include <vector>
+
 #include "core/tensor.h"
-#include "utils/implement.h"
 #include "program.h"
+#include "utils/implement.h"
 
-namespace ts {
-    class Graph;
-    class Workbench;
-    class TS_DEBUG_API ImageFilter {
+namespace ts
+{
+  class Graph;
+  class Workbench;
+  class TS_DEBUG_API ImageFilter {
     public:
-        using self = ImageFilter;
+      using self = ImageFilter;
 
-        using shared = std::shared_ptr<self>;
+      using shared = std::shared_ptr<self>;
 
-        enum class ResizeMethod : int32_t {
-            BILINEAR = 0,
-            BICUBIC = 1,
-            NEAREST = 2,
-        };
+      enum class ResizeMethod : int32_t {
+        BILINEAR = 0,
+        BICUBIC  = 1,
+        NEAREST  = 2,
+      };
 
-        ImageFilter();
+      ImageFilter();
 
-        explicit ImageFilter(const ComputingDevice &device);
+      explicit ImageFilter(const ComputingDevice &device);
 
-        ImageFilter(const self &) = delete;
+      ImageFilter(const self &) = delete;
 
-        ImageFilter &operator=(const self &) = delete;
+      ImageFilter &operator=(const self &) = delete;
 
-        void to_float();
+      void to_float();
 
-        void scale(float f);
+      void scale(float f);
 
-        void sub_mean(const std::vector<float> &mean);
+      void sub_mean(const std::vector<float> &mean);
 
-        void div_std(const std::vector<float> &std);
+      void div_std(const std::vector<float> &std);
 
-        void resize(int width, int height, ResizeMethod method = ResizeMethod::BILINEAR);
+      void resize(
+        int width, int height, ResizeMethod method = ResizeMethod::BILINEAR);
 
-        void resize(int short_side, ResizeMethod method = ResizeMethod::BILINEAR);
+      void resize(int short_side, ResizeMethod method = ResizeMethod::BILINEAR);
 
-        void center_crop(int width, int height);
+      void center_crop(int width, int height);
 
-        void center_crop(int side);
+      void center_crop(int side);
 
-        void channel_swap(const std::vector<int> &shuffle);
+      void channel_swap(const std::vector<int> &shuffle);
 
-        void prewhiten();
+      void prewhiten();
 
-        void to_chw();
+      void to_chw();
 
-        void letterbox(int width, int height, float outer_value = 0, ResizeMethod method = ResizeMethod::BILINEAR);
+      void letterbox(
+        int          width,
+        int          height,
+        float        outer_value = 0,
+        ResizeMethod method      = ResizeMethod::BILINEAR);
 
-        void divided(int width, int height, float padding_value);
-        
-        void force_color();
-        
-        void force_gray();
-        
-        /**
-         * ensure image to gray
-         * @param scale [0.114, 0.587, 0.299] as BGR format may give
-         */
-        void force_gray(const std::vector<float> &scale);
+      void divided(int width, int height, float padding_value);
 
-        void norm_image(float epsilon);
+      void force_color();
 
-        /**
-         * Clear all set processor
-         */
-        void clear();
+      void force_gray();
 
-        /**
-         * Compile all processor
-         */
-        void compile();
+      /**
+       * ensure image to gray
+       * @param scale [0.114, 0.587, 0.299] as BGR format may give
+       */
+      void force_gray(const std::vector<float> &scale);
 
-        /**
-         * Do ImageFilter
-         * @param image Supporting Int8 and Float,
-         *              Shape is [height, width, channels]
-         * @return Converted image
-         */
-        Tensor run(const Tensor &image);
+      void norm_image(float epsilon);
 
-        shared clone() const;
+      /**
+       * Clear all set processor
+       */
+      void clear();
 
-        const Graph &graph() const;
+      /**
+       * Compile all processor
+       */
+      void compile();
 
-        Module::shared module() const;
+      /**
+       * Do ImageFilter
+       * @param image Supporting Int8 and Float,
+       *              Shape is [height, width, channels]
+       * @return Converted image
+       */
+      Tensor run(const Tensor &image);
 
-        Program::shared program() const;
+      shared clone() const;
 
+      const Graph &graph() const;
+
+      Module::shared module() const;
+
+      Program::shared program() const;
     private:
-        class Implement;
-        Declare<Implement> m_impl;
+      class Implement;
+      Declare<Implement> m_impl;
 
-        explicit ImageFilter(const Implement &other);
+      explicit ImageFilter(const Implement &other);
 
-        std::string serial_name() const;
-    };
-}
+      std::string serial_name() const;
+  };
+}  // namespace ts
 
-
-#endif //TENSORSTACK_RUNTIME_IMAGE_FILTER_H
+#endif  // TENSORSTACK_RUNTIME_IMAGE_FILTER_H

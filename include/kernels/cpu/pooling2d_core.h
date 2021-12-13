@@ -7,17 +7,23 @@
 
 #include "backend/base/base_pooling2d_core.h"
 
-namespace ts {
-    namespace cpu {
-        class Pooling2DCore : public base::Pooling2DCore {
-        public:
-            void pooling2d(const Tensor &x, Pooling2DType type,
-                           const Padding2D &padding, Padding2DType padding_type,
-                           const Size2D &ksize, const Stride2D &stride,
-                           Conv2DFormat format, Tensor &out) override;
-        };
-    }
-}
+namespace ts
+{
+  namespace cpu
+  {
+    class Pooling2DCore : public base::Pooling2DCore {
+      public:
+        void pooling2d(
+          const Tensor    &x,
+          Pooling2DType    type,
+          const Padding2D &padding,
+          Padding2DType    padding_type,
+          const Size2D    &ksize,
+          const Stride2D  &stride,
+          Conv2DFormat     format,
+          Tensor          &out) override;
+    };
+  }  // namespace cpu
+}  // namespace ts
 
-
-#endif //TENSORSTACK_KERNELS_CPU_POOLING2D_CORE_H
+#endif  // TENSORSTACK_KERNELS_CPU_POOLING2D_CORE_H

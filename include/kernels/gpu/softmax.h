@@ -4,18 +4,19 @@
 #include "backend/base/base_softmax.h"
 #include "operator_on_gpu.h"
 
-namespace ts {
-	namespace gpu {
-		class Softmax : public OperatorOnGPU<base::Softmax> {
-		public:
-			using self = Softmax;
-			using supper = OperatorOnGPU<base::Softmax>;
+namespace ts
+{
+  namespace gpu
+  {
+    class Softmax : public OperatorOnGPU<base::Softmax> {
+      public:
+        using self   = Softmax;
+        using supper = OperatorOnGPU<base::Softmax>;
 
-			void softmax(const Tensor &x, int dim, bool smooth, Tensor &out) override;
-		};
-	}
-}
+        void softmax(
+          const Tensor &x, int dim, bool smooth, Tensor &out) override;
+    };
+  }  // namespace gpu
+}  // namespace ts
 
-
-
-#endif //TENSORSTACK_KERNELS_GPU_SOFTMAX_H
+#endif  // TENSORSTACK_KERNELS_GPU_SOFTMAX_H

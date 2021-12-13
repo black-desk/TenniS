@@ -7,28 +7,30 @@
 
 #include "operator_on_device.h"
 
-namespace ts {
-    namespace base {
-        class ReshapeV2 : public OperatorOnDevice {
-        public:
-            using self = ReshapeV2;
-            using supper = OperatorOnDevice;
+namespace ts
+{
+  namespace base
+  {
+    class ReshapeV2 : public OperatorOnDevice {
+      public:
+        using self   = ReshapeV2;
+        using supper = OperatorOnDevice;
 
-            ReshapeV2() = default;
+        ReshapeV2() = default;
 
-            void init() override;
+        void init() override;
 
-            int infer(Stack &stack, std::vector<Tensor::Prototype> &output) override;
+        int infer(
+          Stack &stack, std::vector<Tensor::Prototype> &output) override;
 
-            /**
-             *
-             * @param stack x, shape
-             * @return
-             */
-            int run(Stack &stack) override;
-        };
-    }
-}
+        /**
+         *
+         * @param stack x, shape
+         * @return
+         */
+        int run(Stack &stack) override;
+    };
+  }  // namespace base
+}  // namespace ts
 
-
-#endif //TENSORSTACK_BACKEND_BASE_BASE_RESHAPE_V2_H
+#endif  // TENSORSTACK_BACKEND_BASE_BASE_RESHAPE_V2_H

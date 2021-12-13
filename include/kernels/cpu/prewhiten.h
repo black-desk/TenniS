@@ -4,18 +4,18 @@
 #include "backend/base/base_prewhiten.h"
 #include "operator_on_cpu.h"
 
-namespace ts {
-	namespace cpu {
-		class PreWhiten : public OperatorOnCPU<base::PreWhiten> {
-		public:
-		    using self = PreWhiten;
-			using supper = OperatorOnCPU<base::PreWhiten>;
+namespace ts
+{
+  namespace cpu
+  {
+    class PreWhiten : public OperatorOnCPU<base::PreWhiten> {
+      public:
+        using self   = PreWhiten;
+        using supper = OperatorOnCPU<base::PreWhiten>;
 
-			void prewhiten(const Tensor &x, Tensor &out) override;
-		};
-	}
-}
+        void prewhiten(const Tensor &x, Tensor &out) override;
+    };
+  }  // namespace cpu
+}  // namespace ts
 
-
-
-#endif //TENSORSTACK_KERNELS_CPU_PREWHITEN_H
+#endif  // TENSORSTACK_KERNELS_CPU_PREWHITEN_H

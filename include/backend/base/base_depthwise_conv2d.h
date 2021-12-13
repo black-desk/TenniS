@@ -7,16 +7,19 @@
 
 #include "base_conv2d.h"
 
-namespace ts {
-    namespace base {
-        class DepthwiseConv2D : public Conv2D {
-        public:
-            using self = DepthwiseConv2D;
-            using supper = Conv2D;
+namespace ts
+{
+  namespace base
+  {
+    class DepthwiseConv2D : public Conv2D {
+      public:
+        using self   = DepthwiseConv2D;
+        using supper = Conv2D;
 
-            int infer(Stack &stack, std::vector<Tensor::Prototype> &output) override;
-        };
-    }
-}
+        int infer(
+          Stack &stack, std::vector<Tensor::Prototype> &output) override;
+    };
+  }  // namespace base
+}  // namespace ts
 
-#endif //TENSORSTACK_BACKEND_BASE_BASE_DEPTHWISE_CONV2D_H
+#endif  // TENSORSTACK_BACKEND_BASE_BASE_DEPTHWISE_CONV2D_H

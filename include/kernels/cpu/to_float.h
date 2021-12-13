@@ -3,12 +3,12 @@
 
 #include "backend/base/base_cast.h"
 
+namespace ts
+{
+  namespace cpu
+  {
+    using ToFloat = OperatorOnAny<base::CastTo<FLOAT32>>;
+  }
+}  // namespace ts
 
-namespace ts {
-	namespace cpu {
-	    using ToFloat = OperatorOnAny<base::CastTo<FLOAT32>>;
-	}
-}
-
-
-#endif //TENSORSTACK_KERNELS_CPU_TO_FLOAT_H
+#endif  // TENSORSTACK_KERNELS_CPU_TO_FLOAT_H

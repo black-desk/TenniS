@@ -5,7 +5,7 @@
 #ifndef TENNIS_API_CPP_OPERATOR_GPU_H
 #define TENNIS_API_CPP_OPERATOR_GPU_H
 
-#include "operator.h"
 #include "../operator_gpu.h"
+#include "operator.h"
 
-#endif //TENNIS_API_CPP_OPERATOR_GPU_H
+#endif  // TENNIS_API_CPP_OPERATOR_GPU_H

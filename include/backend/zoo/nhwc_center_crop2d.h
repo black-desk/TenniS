@@ -5,31 +5,32 @@
 #ifndef TENSORSTACK_BACKEND_NHWC_CENTER_CROP2D_H
 #define TENSORSTACK_BACKEND_NHWC_CENTER_CROP2D_H
 
-
 #include <runtime/operator.h>
+
 #include "backend/common_structure.h"
 
-namespace ts {
-    namespace zoo {
-        class NHWCCenterCrop2D : public Operator {
-        public:
-            using self = NHWCCenterCrop2D;
-            using supper = Operator;
+namespace ts
+{
+  namespace zoo
+  {
+    class NHWCCenterCrop2D : public Operator {
+      public:
+        using self   = NHWCCenterCrop2D;
+        using supper = Operator;
 
-            NHWCCenterCrop2D();
+        NHWCCenterCrop2D();
 
-            void init() override;
+        void init() override;
 
-            int run(Stack &stack) override;
+        int run(Stack &stack) override;
 
-            int infer(Stack &stack, std::vector<Tensor::Prototype> &output) override;
+        int infer(
+          Stack &stack, std::vector<Tensor::Prototype> &output) override;
+      private:
+        Size2D           m_size;
+        Operator::shared m_pad_op;
+    };
+  }  // namespace zoo
+}  // namespace ts
 
-        private:
-            Size2D m_size;
-            Operator::shared m_pad_op;
-        };
-    }
-}
-
-
-#endif //TENSORSTACK_BACKEND_NHWC_CENTER_CROP2D_H
+#endif  // TENSORSTACK_BACKEND_NHWC_CENTER_CROP2D_H

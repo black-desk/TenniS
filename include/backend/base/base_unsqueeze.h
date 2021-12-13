@@ -7,24 +7,24 @@
 
 #include "base_new_shape.h"
 
-namespace ts {
-    namespace base {
-        class Unsqueeze : public NewShape {
-        public:
-            using self = Unsqueeze;
-            using supper = NewShape;
+namespace ts
+{
+  namespace base
+  {
+    class Unsqueeze : public NewShape {
+      public:
+        using self   = Unsqueeze;
+        using supper = NewShape;
 
-            Unsqueeze();
+        Unsqueeze();
 
-            void init() override;
+        void init() override;
 
-            Shape newshape(const Tensor &x) override;
+        Shape newshape(const Tensor &x) override;
+      private:
+        std::vector<int> m_axes;
+    };
+  }  // namespace base
+}  // namespace ts
 
-        private:
-            std::vector<int> m_axes;
-        };
-    }
-}
-
-
-#endif //TENSORSTACK_BACKEND_BASE_BASE_UNSQUEEZE_H
+#endif  // TENSORSTACK_BACKEND_BASE_BASE_UNSQUEEZE_H

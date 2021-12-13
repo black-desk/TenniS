@@ -3,25 +3,25 @@
 
 #include "operator_on_cpu.h"
 
+namespace ts
+{
+  namespace cpu
+  {
+    class Range : public OperatorOnAny<Operator> {
+      public:
+        using self   = Range;
+        using supper = OperatorOnAny<Operator>;
 
-namespace ts {
-    namespace cpu {
-        class Range : public OperatorOnAny<Operator> {
-        public:
-            using self = Range;
-            using supper = OperatorOnAny<Operator>;
+        Range();
 
-            Range();
+        void init() override;
 
-            void init() override;
+        int run(Stack &stack) override;
 
-            int run(Stack &stack) override;
-
-            int infer(Stack &stack, std::vector<Tensor::Prototype> &output) override;
-
-        };
-    }
-}
-
+        int infer(
+          Stack &stack, std::vector<Tensor::Prototype> &output) override;
+    };
+  }  // namespace cpu
+}  // namespace ts
 
 #endif  // TENSORSTACK_KERNELS_CPU_RANGE_H

@@ -7,10 +7,12 @@
 
 #include "element_wise_reduce.h"
 
-namespace ts {
-    namespace base {
-        using Sub = ElementWiseReduce;
-    }
-}
+namespace ts
+{
+  namespace base
+  {
+    using Sub = ElementWiseReduce;
+  }
+}  // namespace ts
 
-#endif //TENSORSTACK_BACKEND_BASE_BASE_SUB_H
+#endif  // TENSORSTACK_BACKEND_BASE_BASE_SUB_H

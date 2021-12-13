@@ -2,24 +2,22 @@
 // Created by kier on 19-7-29.
 //
 
+#include "backend/name.h"
 #include "backend/zoo/crop_nd.h"
 #include "backend/zoo/divided.h"
 #include "backend/zoo/limit.h"
 #include "backend/zoo/nhwc_center_crop2d.h"
 #include "backend/zoo/nhwc_letterbox.h"
 #include "backend/zoo/nhwc_scale_resize2d.h"
-
-#include "kernels/cpu/conv2d_v2.h"
-#include "kernels/cpu/pooling2d_v2.h"
-#include "kernels/cpu/depthwise_conv2d_v2.h"
+#include "global/operator_factory.h"
 #include "kernels/cpu/concat.h"
+#include "kernels/cpu/conv2d_v2.h"
+#include "kernels/cpu/depthwise_conv2d_v2.h"
 #include "kernels/cpu/gather.h"
 #include "kernels/cpu/gatherv2.h"
+#include "kernels/cpu/pooling2d_v2.h"
 #include "kernels/cpu/stack_tensor.h"
 #include "kernels/cpu/strided_slice.h"
-
-#include "global/operator_factory.h"
-#include "backend/name.h"
 
 using namespace ts;
 

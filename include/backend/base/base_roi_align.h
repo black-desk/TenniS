@@ -7,31 +7,37 @@
 
 #include "operator_on_device.h"
 
-namespace ts {
-    namespace base {
-        class ROIAlign : public OperatorOnDevice {
-        public:
-            using self = ROIAlign;
-            using supper = OperatorOnDevice;
+namespace ts
+{
+  namespace base
+  {
+    class ROIAlign : public OperatorOnDevice {
+      public:
+        using self   = ROIAlign;
+        using supper = OperatorOnDevice;
 
-            ROIAlign();
+        ROIAlign();
 
-            void init() override;
+        void init() override;
 
-            int run(Stack &stack) override;
+        int run(Stack &stack) override;
 
-            int infer(Stack &stack, std::vector<Tensor::Prototype> &output) override;
+        int infer(
+          Stack &stack, std::vector<Tensor::Prototype> &output) override;
 
-            virtual std::vector<Tensor> roi_align(
-                    const std::vector<Tensor> &inputs,
-                    int pool_h, int pool_w, float spatial_scale, int sampling_ratio) = 0;
-        private:
-            int m_pool_h = 0;
-            int m_pool_w = 0;
-            float m_spatial_scale = 1.0f;
-            int m_sampling_ratio = 2;
-        };
-    }
-}
+        virtual std::vector<Tensor> roi_align(
+          const std::vector<Tensor> &inputs,
+          int                        pool_h,
+          int                        pool_w,
+          float                      spatial_scale,
+          int                        sampling_ratio) = 0;
+      private:
+        int   m_pool_h         = 0;
+        int   m_pool_w         = 0;
+        float m_spatial_scale  = 1.0f;
+        int   m_sampling_ratio = 2;
+    };
+  }  // namespace base
+}  // namespace ts
 
-#endif //TENSORSTACK_BASE_ROI_ALIGN_H
+#endif  // TENSORSTACK_BASE_ROI_ALIGN_H

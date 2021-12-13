@@ -7,9 +7,8 @@
 
 #include "api/program.h"
 #include "declaration.h"
-
 #include "runtime/program.h"
 
 DECLARE_API_TYPE(ts_Program, ts::Program)
 
-#endif //TENNIS_API_DECLARE_PROGRAM_H
+#endif  // TENNIS_API_DECLARE_PROGRAM_H

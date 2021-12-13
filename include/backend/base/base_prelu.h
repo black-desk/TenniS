@@ -7,33 +7,35 @@
 
 #include "operator_on_device.h"
 
-namespace ts {
-    namespace base {
-        /**
-         * PReLU
-         */
-        class PReLU : public OperatorOnDevice {
-        public:
-            using self = PReLU;
-            using supper = OperatorOnDevice;
+namespace ts
+{
+  namespace base
+  {
+    /**
+     * PReLU
+     */
+    class PReLU : public OperatorOnDevice {
+      public:
+        using self   = PReLU;
+        using supper = OperatorOnDevice;
 
-            PReLU();  // tell me the operator memory
+        PReLU();  // tell me the operator memory
 
-            void init() override;
+        void init() override;
 
-            int run(Stack &stack) override;
+        int run(Stack &stack) override;
 
-            int infer(Stack &stack, std::vector<Tensor::Prototype> &output) override;
+        int infer(
+          Stack &stack, std::vector<Tensor::Prototype> &output) override;
 
-            virtual void prelu(const Tensor &x, const Tensor &slope, int dim, Tensor &out) = 0;
+        virtual void prelu(
+          const Tensor &x, const Tensor &slope, int dim, Tensor &out) = 0;
+      private:
+        int m_dim = -1;
 
-        private:
-            int m_dim = -1;
+        bool check_inputs(Stack &stack) const;
+    };
+  }  // namespace base
+}  // namespace ts
 
-            bool check_inputs(Stack &stack) const;
-        };
-    }
-}
-
-
-#endif //TENSORSTACK_BACKEND_BASE_PRELU_H
+#endif  // TENSORSTACK_BACKEND_BASE_PRELU_H

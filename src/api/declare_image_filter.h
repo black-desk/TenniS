@@ -7,9 +7,8 @@
 
 #include "api/image_filter.h"
 #include "declaration.h"
-
 #include "runtime/image_filter.h"
 
 DECLARE_API_TYPE(ts_ImageFilter, ts::ImageFilter)
 
-#endif //TENNIS_API_DECLARE_IMAGE_FILTER_H
+#endif  // TENNIS_API_DECLARE_IMAGE_FILTER_H

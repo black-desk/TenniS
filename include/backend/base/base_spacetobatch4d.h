@@ -5,38 +5,50 @@
 #ifndef TENSORSTACK_BACKEND_BASE_BASE_SPACETOBATCH4D_H
 #define TENSORSTACK_BACKEND_BASE_BASE_SPACETOBATCH4D_H
 
-
 #include "operator_on_device.h"
 
-namespace ts {
-    namespace base {
-        
-       
-        class SpaceToBatch4D : public OperatorOnDevice {
-        public:
-            using self = SpaceToBatch4D;
-            using supper = OperatorOnDevice;
+namespace ts
+{
+  namespace base
+  {
 
-            SpaceToBatch4D();
+    class SpaceToBatch4D : public OperatorOnDevice {
+      public:
+        using self   = SpaceToBatch4D;
+        using supper = OperatorOnDevice;
 
-            void CaculateOutputSize(const Shape &input_shape, Shape &output_shape, const int crop_top, const int crop_bottom,
-                                    const int crop_left,const int crop_right, const int block_height, const int block_width);
-            void init() override;
+        SpaceToBatch4D();
 
-            int run(Stack &stack) override;
+        void CaculateOutputSize(
+          const Shape &input_shape,
+          Shape       &output_shape,
+          const int    crop_top,
+          const int    crop_bottom,
+          const int    crop_left,
+          const int    crop_right,
+          const int    block_height,
+          const int    block_width);
+        void init() override;
 
-            int infer(Stack &stack, std::vector<Tensor::Prototype> &output) override;
+        int run(Stack &stack) override;
 
-            virtual void spacetobatch4d_run(const Tensor &x,const int crop_top, const int crop_bottom,
-                    const int crop_left,const int crop_right, const int block_height, const int block_width, Tensor &out) = 0;
+        int infer(
+          Stack &stack, std::vector<Tensor::Prototype> &output) override;
 
-        protected:
-
-            int m_padding[4];
-            int m_block_shape[2];
-        };
-    }
-}
-
+        virtual void spacetobatch4d_run(
+          const Tensor &x,
+          const int     crop_top,
+          const int     crop_bottom,
+          const int     crop_left,
+          const int     crop_right,
+          const int     block_height,
+          const int     block_width,
+          Tensor       &out) = 0;
+      protected:
+        int m_padding [4];
+        int m_block_shape [2];
+    };
+  }  // namespace base
+}  // namespace ts
 
 #endif

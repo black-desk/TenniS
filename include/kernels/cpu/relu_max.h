@@ -4,18 +4,18 @@
 #include "backend/base/base_relu_max.h"
 #include "operator_on_cpu.h"
 
-namespace ts {
-	namespace cpu {
-		class ReLUMax : public OperatorOnCPU<base::ReLUMax> {
-		public:
-		    using self = ReLUMax;
-			using supper = OperatorOnCPU<base::ReLUMax>;
+namespace ts
+{
+  namespace cpu
+  {
+    class ReLUMax : public OperatorOnCPU<base::ReLUMax> {
+      public:
+        using self   = ReLUMax;
+        using supper = OperatorOnCPU<base::ReLUMax>;
 
-            void relu_max(const Tensor &x, float max, Tensor &out) override;
-		};
-	}
-}
+        void relu_max(const Tensor &x, float max, Tensor &out) override;
+    };
+  }  // namespace cpu
+}  // namespace ts
 
-
-
-#endif //TENSORSTACK_KERNELS_CPU_RELU_MAX_H
+#endif  // TENSORSTACK_KERNELS_CPU_RELU_MAX_H

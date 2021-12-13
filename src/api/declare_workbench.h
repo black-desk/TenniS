@@ -7,9 +7,8 @@
 
 #include "api/workbench.h"
 #include "declaration.h"
-
 #include "runtime/workbench.h"
 
 DECLARE_API_TYPE(ts_Workbench, ts::Workbench)
 
-#endif //TENNIS_API_DECLARE_WORKBENCH_H
+#endif  // TENNIS_API_DECLARE_WORKBENCH_H

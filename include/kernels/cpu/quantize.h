@@ -4,18 +4,21 @@
 #include "backend/base/base_quantize.h"
 #include "operator_on_cpu.h"
 
-namespace ts {
-    namespace cpu {
-        class Quantize : public OperatorOnCPU<base::Quantize> {
-        public:
-            using self = Quantize;
-            using supper = ts::Operator;
+namespace ts
+{
+  namespace cpu
+  {
+    class Quantize : public OperatorOnCPU<base::Quantize> {
+      public:
+        using self   = Quantize;
+        using supper = ts::Operator;
 
-            void quantize(const Tensor &x, std::vector<float> quantize_scales, Tensor &out) override;
-        };
-    }
-}
+        void quantize(
+          const Tensor      &x,
+          std::vector<float> quantize_scales,
+          Tensor            &out) override;
+    };
+  }  // namespace cpu
+}  // namespace ts
 
-
-
-#endif //TENSORSTACK_KERNELS_CPU_PRELU_H
+#endif  // TENSORSTACK_KERNELS_CPU_PRELU_H

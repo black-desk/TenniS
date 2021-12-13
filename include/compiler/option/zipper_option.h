@@ -8,33 +8,37 @@
 #include "module/graph.h"
 #include "utils/static.h"
 
-namespace ts {
+namespace ts
+{
 
-    class ZipperOption {
+  class ZipperOption {
     public:
-        using self = ZipperOption;
+      using self = ZipperOption;
 
-        virtual ~ZipperOption() = default;
+      virtual ~ZipperOption() = default;
 
-        /**
-         * zip node on device
-         * @param device computing device
-         * @param node checking node
-         * @param zipped_node get zipped_node if return true
-         * @return zipped return true, or false
-         */
-        virtual bool zip(const ComputingDevice &device, Node node, Node &zipped_node) const = 0;
-    };
+      /**
+       * zip node on device
+       * @param device computing device
+       * @param node checking node
+       * @param zipped_node get zipped_node if return true
+       * @return zipped return true, or false
+       */
+      virtual bool zip(
+        const ComputingDevice &device, Node node, Node &zipped_node) const = 0;
+  };
 
-    const std::vector<const ZipperOption*> &GetFullOptions();
+  const std::vector<const ZipperOption *> &GetFullOptions();
 
-    void RegisterOption(const ZipperOption *option);
-}
+  void RegisterOption(const ZipperOption *option);
+}  // namespace ts
 
-#define TS_REGISTER_ZIPPER_OPTION(option) \
-namespace { \
-    static option ts_serial_name(_ts_zipper_option); \
-    TS_STATIC_ACTION(ts::RegisterOption, &(ts_serial_name(_ts_zipper_option))); \
-}
+#define TS_REGISTER_ZIPPER_OPTION(option)                                      \
+  namespace                                                                    \
+  {                                                                            \
+    static option ts_serial_name(_ts_zipper_option);                           \
+    TS_STATIC_ACTION(                                                          \
+      ts::RegisterOption, &(ts_serial_name(_ts_zipper_option)));               \
+  }
 
-#endif //TENSORSTACK_COMPILER_OPTION_ZIPPER_OPTION_H
+#endif  // TENSORSTACK_COMPILER_OPTION_ZIPPER_OPTION_H

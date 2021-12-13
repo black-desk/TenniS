@@ -5,69 +5,64 @@
 #ifndef TENSORSTACK_DEVICE_CONTEXT_H
 #define TENSORSTACK_DEVICE_CONTEXT_H
 
-
-#include <global/hard_converter.h>
 #include <global/device_admin.h>
+#include <global/hard_converter.h>
 
 #include "utils/ctxmgr_lite.h"
 
-namespace ts {
-    class DeviceHandle;
-    class TS_DEBUG_API DeviceContext : public SetupContext<DeviceContext> {
+namespace ts
+{
+  class DeviceHandle;
+  class TS_DEBUG_API DeviceContext : public SetupContext<DeviceContext> {
     public:
-        using self = DeviceContext;
-        using shared = std::shared_ptr<self>;
+      using self   = DeviceContext;
+      using shared = std::shared_ptr<self>;
 
-        DeviceContext() = default;
+      DeviceContext() = default;
 
-        DeviceContext(ComputingDevice computing_device);
+      DeviceContext(ComputingDevice computing_device);
 
-        ~DeviceContext();
+      ~DeviceContext();
 
-        DeviceContext(const self &) = delete;
-        self &operator=(const self &) = delete;
+      DeviceContext(const self &) = delete;
+      self &operator=(const self &) = delete;
 
-        void initialize(ComputingDevice computing_device);
-        void finalize();
+      void initialize(ComputingDevice computing_device);
+      void finalize();
 
-        void active();
-        void synchronize();
+      void active();
+      void synchronize();
 
-        /**
-         *
-         * @param context new-context
-         * @return return pre-device context
-         * if new-context is not pre-context than synchronize the pre-context
-         */
-        static self* Switch(self *context);
+      /**
+       *
+       * @param context new-context
+       * @return return pre-device context
+       * if new-context is not pre-context than synchronize the pre-context
+       */
+      static self *Switch(self *context);
 
-        /**
-         * pointing to device operating self-defined structure
-         * not using in out scope
-         */
-        DeviceHandle *handle = nullptr;
+      /**
+       * pointing to device operating self-defined structure
+       * not using in out scope
+       */
+      DeviceHandle *handle = nullptr;
 
-        ComputingDevice computing_device;
-        MemoryDevice memory_device;
-
+      ComputingDevice computing_device;
+      MemoryDevice    memory_device;
     private:
-        DeviceAdmin::function m_device_admin;
-
+      DeviceAdmin::function m_device_admin;
     public:
-        DeviceContext(self &&other) {
-            *this = std::move(other);
-        }
-        DeviceContext &operator=(self &&other) TS_NOEXCEPT {
+      DeviceContext(self &&other) { *this = std::move(other); }
+      DeviceContext &operator=(self &&other) TS_NOEXCEPT {
 #define MOVE_MEMBER(member) this->member = std::move(other.member)
-            MOVE_MEMBER(handle);
-            MOVE_MEMBER(computing_device);
-            MOVE_MEMBER(memory_device);
-            MOVE_MEMBER(m_device_admin);
+        MOVE_MEMBER(handle);
+        MOVE_MEMBER(computing_device);
+        MOVE_MEMBER(memory_device);
+        MOVE_MEMBER(m_device_admin);
 #undef MOVE_MEMBER
-            return *this;
-        }
-    };
-}
+        return *this;
+      }
+  };
+}  // namespace ts
 
-
-#endif //TENSORSTACK_DEVICE_CONTEXT_H
+#endif  // TENSORSTACK_DEVICE_CONTEXT_H

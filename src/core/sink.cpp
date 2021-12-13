@@ -4,5 +4,6 @@
 
 #include "core/sink.h"
 
-namespace ts {
+namespace ts
+{
 }

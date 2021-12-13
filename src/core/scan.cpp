@@ -4,6 +4,7 @@
 
 #include "core/scan.h"
 
-namespace ts {
+namespace ts
+{
 
 }

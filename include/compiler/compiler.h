@@ -5,52 +5,55 @@
 #ifndef TENSORSTACK_COMPILER_COMPILER_H
 #define TENSORSTACK_COMPILER_COMPILER_H
 
-#include "runtime/instruction.h"
 #include "module/graph.h"
+#include "runtime/instruction.h"
 
-namespace ts {
+namespace ts
+{
 
-    class DeviceTensor
-    {
+  class DeviceTensor {
     public:
-        Tensor tensor;
-        DeviceType device;
+      Tensor     tensor;
+      DeviceType device;
 
-        DeviceTensor(const Tensor &tensor) : tensor(tensor) {}
-        DeviceTensor(const Tensor &tensor, const DeviceType &device)
-            : tensor(tensor), device(device) {}
+      DeviceTensor(const Tensor &tensor) : tensor(tensor) {}
+      DeviceTensor(const Tensor &tensor, const DeviceType &device) :
+        tensor(tensor), device(device) {}
 
-        operator Tensor() const { return tensor; }
-    };
+      operator Tensor() const { return tensor; }
+  };
 
-    class InstructionBlock
-    {
+  class InstructionBlock {
     public:
-        int nargs = 0;
-        int nresults = 0;
-        std::vector<Instruction::shared> instructions;
-        std::vector<DeviceTensor> data_segment;
-    };
+      int                              nargs    = 0;
+      int                              nresults = 0;
+      std::vector<Instruction::shared> instructions;
+      std::vector<DeviceTensor>        data_segment;
+  };
 
-    /**
-     * compile the ZGraph to instructions
-     */
-    class Compiler {
+  /**
+   * compile the ZGraph to instructions
+   */
+  class Compiler {
     public:
-        using self = Compiler;
+      using self = Compiler;
 
-        explicit Compiler(const ComputingDevice &computing_device);
+      explicit Compiler(const ComputingDevice &computing_device);
 
-        InstructionBlock compile(const std::vector<Node> &raw_inputs, const std::vector<Node> &outputs);
-        InstructionBlock compile(const std::vector<Node> &raw_inputs, const std::vector<Node> &outputs,
-                const std::string &options);
-        std::vector<Instruction::shared> convert_operator_instruction(const Node &node);
+      InstructionBlock compile(
+        const std::vector<Node> &raw_inputs, const std::vector<Node> &outputs);
+      InstructionBlock compile(
+        const std::vector<Node> &raw_inputs,
+        const std::vector<Node> &outputs,
+        const std::string       &options);
+      std::vector<Instruction::shared> convert_operator_instruction(
+        const Node &node);
 
-        static void run_const_nodes(const std::vector<Node> &nodes, std::vector<Node> &const_nodes);
+      static void run_const_nodes(
+        const std::vector<Node> &nodes, std::vector<Node> &const_nodes);
     private:
-        ComputingDevice m_computing_device;
-    };
-}
+      ComputingDevice m_computing_device;
+  };
+}  // namespace ts
 
-
-#endif //TENSORSTACK_COMPILER_COMPILER_H
+#endif  // TENSORSTACK_COMPILER_COMPILER_H

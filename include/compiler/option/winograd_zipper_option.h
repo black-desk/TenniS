@@ -7,13 +7,13 @@
 
 #include "zipper_option.h"
 
-
-namespace ts {
-    class Conv2dZipperOption : public ZipperOption {
+namespace ts
+{
+  class Conv2dZipperOption : public ZipperOption {
     public:
-        bool zip(const ComputingDevice &device, Node node, Node &zipped_node) const final;
-    };
-}
+      bool zip(const ComputingDevice &device, Node node, Node &zipped_node)
+        const final;
+  };
+}  // namespace ts
 
-
-#endif //TENSORSTACK_WINOGRAD_ZIPPER_OPTION_H
+#endif  // TENSORSTACK_WINOGRAD_ZIPPER_OPTION_H

@@ -7,4 +7,4 @@
 
 #include "ctxmgr_lite.h"
 
-#endif //TENSORSTACK_UTILS_CTXMGR_H
+#endif  // TENSORSTACK_UTILS_CTXMGR_H

@@ -3,12 +3,12 @@
 
 #include "backend/base/base_shape.h"
 
+namespace ts
+{
+  namespace cpu
+  {
+    using GetShape = OperatorOnAny<base::GetShape>;
+  }
+}  // namespace ts
 
-namespace ts {
-    namespace cpu {
-        using GetShape = OperatorOnAny<base::GetShape>;
-    }
-}
-
-
-#endif //TENSORSTACK_KERNELS_CPU_SHAPE_H
+#endif  // TENSORSTACK_KERNELS_CPU_SHAPE_H

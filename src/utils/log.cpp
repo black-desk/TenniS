@@ -3,22 +3,23 @@
 //
 
 #include "utils/log.h"
-#include "utils/static.h"
 
 #include <atomic>
 
-namespace ts {
-    static std::atomic<LogLevel> InnerGlobalLogLevel;
+#include "utils/static.h"
 
-    LogLevel GlobalLogLevel(LogLevel level) {
-        LogLevel pre_level = InnerGlobalLogLevel;
-        InnerGlobalLogLevel = level;
-        return pre_level;
-    }
+namespace ts
+{
+  static std::atomic<LogLevel> InnerGlobalLogLevel;
 
-    LogLevel GlobalLogLevel() {
-        return InnerGlobalLogLevel;
-    }
-}
+  LogLevel GlobalLogLevel(LogLevel level) {
+    LogLevel pre_level  = InnerGlobalLogLevel;
+    InnerGlobalLogLevel = level;
+    return pre_level;
+  }
 
-TS_STATIC_ACTION((ts::LogLevel(*)(ts::LogLevel))ts::GlobalLogLevel, ts::LOG_INFO)
+  LogLevel GlobalLogLevel() { return InnerGlobalLogLevel; }
+}  // namespace ts
+
+TS_STATIC_ACTION(
+  (ts::LogLevel(*)(ts::LogLevel))ts::GlobalLogLevel, ts::LOG_INFO)

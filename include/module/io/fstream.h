@@ -5,102 +5,100 @@
 #ifndef TENSORSTACK_MODULE_IO_FSTREAM_H
 #define TENSORSTACK_MODULE_IO_FSTREAM_H
 
-#include "stream.h"
 #include <fstream>
 
-namespace ts {
-    class TS_DEBUG_API FileStreamReader : public StreamReader {
+#include "stream.h"
+
+namespace ts
+{
+  class TS_DEBUG_API FileStreamReader : public StreamReader {
     public:
-        using self = FileStreamReader;
-        using supper = StreamReader;
-        using std_stream = std::ifstream;
+      using self       = FileStreamReader;
+      using supper     = StreamReader;
+      using std_stream = std::ifstream;
 
-        FileStreamReader(const self &) = delete;
+      FileStreamReader(const self &) = delete;
 
-        self &operator=(const self &) = delete;
+      self &operator=(const self &) = delete;
 
-        FileStreamReader();
+      FileStreamReader();
 
-        explicit FileStreamReader(const std::string &path);
+      explicit FileStreamReader(const std::string &path);
 
-        void open(const std::string &path);
+      void open(const std::string &path);
 
-        bool is_open() const;
+      bool is_open() const;
 
-        void close();
+      void close();
 
-        size_t read(void *buffer, size_t size) final;
+      size_t read(void *buffer, size_t size) final;
 
-        std_stream &stream() { return m_stream; }
+      std_stream &stream() { return m_stream; }
 
-        const std_stream &stream() const { return m_stream; }
-
+      const std_stream &stream() const { return m_stream; }
     private:
-        std_stream m_stream;
-    };
+      std_stream m_stream;
+  };
 
-    class TS_DEBUG_API FileStreamWriter : public StreamWriter {
+  class TS_DEBUG_API FileStreamWriter : public StreamWriter {
     public:
-        using self = FileStreamWriter;
-        using supper = StreamWriter;
-        using std_stream = std::ofstream;
+      using self       = FileStreamWriter;
+      using supper     = StreamWriter;
+      using std_stream = std::ofstream;
 
-        FileStreamWriter(const self &) = delete;
+      FileStreamWriter(const self &) = delete;
 
-        self &operator=(const self &) = delete;
+      self &operator=(const self &) = delete;
 
-        FileStreamWriter();
+      FileStreamWriter();
 
-        explicit FileStreamWriter(const std::string &path);
+      explicit FileStreamWriter(const std::string &path);
 
-        void open(const std::string &path);
+      void open(const std::string &path);
 
-        bool is_open() const;
+      bool is_open() const;
 
-        void close();
+      void close();
 
-        size_t write(const void *buffer, size_t size) final;
+      size_t write(const void *buffer, size_t size) final;
 
-        std_stream &stream() { return m_stream; }
+      std_stream &stream() { return m_stream; }
 
-        const std_stream &stream() const { return m_stream; }
-
+      const std_stream &stream() const { return m_stream; }
     private:
-        std_stream m_stream;
-    };
+      std_stream m_stream;
+  };
 
-    class TS_DEBUG_API FileStream : public Stream {
+  class TS_DEBUG_API FileStream : public Stream {
     public:
-        using self = FileStream;
-        using supper = Stream;
-        using std_stream = std::fstream;
+      using self       = FileStream;
+      using supper     = Stream;
+      using std_stream = std::fstream;
 
-        FileStream(const self &) = delete;
+      FileStream(const self &) = delete;
 
-        self &operator=(const self &) = delete;
+      self &operator=(const self &) = delete;
 
-        FileStream();
+      FileStream();
 
-        explicit FileStream(const std::string &path);
+      explicit FileStream(const std::string &path);
 
-        void open(const std::string &path);
+      void open(const std::string &path);
 
-        bool is_open() const;
+      bool is_open() const;
 
-        void close();
+      void close();
 
-        size_t read(void *buffer, size_t size) final;
+      size_t read(void *buffer, size_t size) final;
 
-        size_t write(const void *buffer, size_t size) final;
+      size_t write(const void *buffer, size_t size) final;
 
-        std_stream &stream() { return m_stream; }
+      std_stream &stream() { return m_stream; }
 
-        const std_stream &stream() const { return m_stream; }
-
+      const std_stream &stream() const { return m_stream; }
     private:
-        std_stream m_stream;
-    };
-}
+      std_stream m_stream;
+  };
+}  // namespace ts
 
-
-#endif //TENSORSTACK_MODULE_IO_FSTREAM_H
+#endif  // TENSORSTACK_MODULE_IO_FSTREAM_H

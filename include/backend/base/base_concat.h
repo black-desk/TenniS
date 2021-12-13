@@ -7,28 +7,30 @@
 
 #include "operator_on_device.h"
 
-namespace ts {
-    namespace base {
-        class Concat : public OperatorOnDevice {
-        public:
-            using self = Concat;
-            using supper = OperatorOnDevice;
+namespace ts
+{
+  namespace base
+  {
+    class Concat : public OperatorOnDevice {
+      public:
+        using self   = Concat;
+        using supper = OperatorOnDevice;
 
-            Concat();
+        Concat();
 
-            void init() override;
+        void init() override;
 
-            int run(Stack &stack) override;
+        int run(Stack &stack) override;
 
-            int infer(Stack &stack, std::vector<Tensor::Prototype> &output) override;
+        int infer(
+          Stack &stack, std::vector<Tensor::Prototype> &output) override;
 
-            virtual void concat(const std::vector<Tensor> &x, int dim, Tensor &out) = 0;
+        virtual void concat(
+          const std::vector<Tensor> &x, int dim, Tensor &out) = 0;
+      private:
+        int m_dim = -1;
+    };
+  }  // namespace base
+}  // namespace ts
 
-        private:
-            int m_dim = -1;
-        };
-    }
-}
-
-
-#endif //TENSORSTACK_BACKEND_BASE_BASE_CONCAT_H
+#endif  // TENSORSTACK_BACKEND_BASE_BASE_CONCAT_H

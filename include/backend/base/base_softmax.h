@@ -7,34 +7,36 @@
 
 #include "operator_on_device.h"
 
-namespace ts {
-    namespace base {
-        /**
-         * PReLU
-         */
-        class Softmax : public OperatorOnDevice {
-        public:
-            using self = Softmax;
-            using supper = OperatorOnDevice;
+namespace ts
+{
+  namespace base
+  {
+    /**
+     * PReLU
+     */
+    class Softmax : public OperatorOnDevice {
+      public:
+        using self   = Softmax;
+        using supper = OperatorOnDevice;
 
-            Softmax();  // tell me the operator memory
+        Softmax();  // tell me the operator memory
 
-            void init() override;
+        void init() override;
 
-            int run(Stack &stack) override;
+        int run(Stack &stack) override;
 
-            int infer(Stack &stack, std::vector<Tensor::Prototype> &output) override;
+        int infer(
+          Stack &stack, std::vector<Tensor::Prototype> &output) override;
 
-            virtual void softmax(const Tensor &x, int dim, bool smooth, Tensor &out) = 0;
+        virtual void softmax(
+          const Tensor &x, int dim, bool smooth, Tensor &out) = 0;
+      private:
+        int  m_dim    = -1;
+        bool m_smooth = true;
 
-        private:
-            int m_dim = -1;
-            bool m_smooth = true;
+        bool check_inputs(Stack &stack) const;
+    };
+  }  // namespace base
+}  // namespace ts
 
-            bool check_inputs(Stack &stack) const;
-        };
-    }
-}
-
-
-#endif //TENSORSTACK_BACKEND_BASE_SOFTMAX_H
+#endif  // TENSORSTACK_BACKEND_BASE_SOFTMAX_H

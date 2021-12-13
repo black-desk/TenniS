@@ -15,15 +15,17 @@
 
 #include "kernels/common/third/dragon.h"
 
-namespace ts {
+namespace ts
+{
 
-namespace dragon {
+  namespace dragon
+  {
 
-template <class Context>
-class ProposalOp final : public Operator<Context> {
- public:
-    ProposalOp(const OperatorDef& def, Workspace* ws)
-        : Operator<Context>(def, ws),
+    template <class Context>
+    class ProposalOp final : public Operator<Context> {
+      public:
+        ProposalOp(const OperatorDef &def, Workspace *ws) :
+          Operator<Context>(def, ws),
           strides(OperatorBase::Args<int64_t>("strides")),
           ratios(OperatorBase::Args<float>("ratios")),
           scales(OperatorBase::Args<float>("scales")),
@@ -35,29 +37,28 @@ class ProposalOp final : public Operator<Context> {
           max_level(OperatorBase::Arg<int64_t>("max_level", 5)),
           canonical_level(OperatorBase::Arg<int64_t>("canonical_level", 4)),
           canonical_scale(OperatorBase::Arg<int64_t>("canonical_scale", 224)) {
-        temp(anchors_);
-        temp(proposals_);
-        temp(roi_indices_);
-        temp(nms_mask_);
-    }
-    USE_OPERATOR_FUNCTIONS;
+          temp(anchors_);
+          temp(proposals_);
+          temp(roi_indices_);
+          temp(nms_mask_);
+        }
+        USE_OPERATOR_FUNCTIONS;
 
-    void RunOnDevice() override;
+        void RunOnDevice() override;
 
-    template <typename T> void RunWithType(
-        const T* scores, const T* bbox_deltas);
+        template <typename T>
+        void RunWithType(const T *scores, const T *bbox_deltas);
+      protected:
+        vector<int64_t> strides;
+        vector<float>   ratios, scales;
+        int64_t         pre_nms_top_n, post_nms_top_n;
+        float           nms_thresh;
+        int64_t         min_size, num_images;
+        int64_t         min_level, max_level, canonical_level, canonical_scale;
+        Tensor          anchors_, proposals_, roi_indices_, nms_mask_;
+    };
 
- protected:
-    vector<int64_t> strides;
-    vector<float> ratios, scales;
-    int64_t pre_nms_top_n, post_nms_top_n;
-    float nms_thresh;
-    int64_t min_size, num_images;
-    int64_t min_level, max_level, canonical_level, canonical_scale;
-    Tensor anchors_, proposals_, roi_indices_, nms_mask_;
-};
-
-}  // namespace dragon
+  }  // namespace dragon
 
 }  // namespace ts
 

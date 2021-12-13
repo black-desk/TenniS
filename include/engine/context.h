@@ -7,39 +7,39 @@
 
 #include <memory>
 
-namespace ts {
+namespace ts
+{
 
-    /**
-     * Context for running device, work with Workbench
-     * call by
-     */
-    class Context {
+  /**
+   * Context for running device, work with Workbench
+   * call by
+   */
+  class Context {
     public:
-        using self = Context;    ///< self class
-        using shared = std::shared_ptr<self>;  ///< smart pointer
+      using self   = Context;                ///< self class
+      using shared = std::shared_ptr<self>;  ///< smart pointer
 
-        /**
-         * callback when context initialize
-         */
-        virtual void init() = 0;
+      /**
+       * callback when context initialize
+       */
+      virtual void init() = 0;
 
-        /**
-         * callback when context finalize
-         */
-        virtual void exit() = 0;
+      /**
+       * callback when context finalize
+       */
+      virtual void exit() = 0;
 
-        /**
-         * callback when context resume
-         */
-        virtual void resume() = 0;
+      /**
+       * callback when context resume
+       */
+      virtual void resume() = 0;
 
-        /**
-         * callback when context suspend
-         */
-        virtual void suspend() = 0;
-    };
+      /**
+       * callback when context suspend
+       */
+      virtual void suspend() = 0;
+  };
 
-}
+}  // namespace ts
 
-
-#endif //TENSORSTACK_ENGINE_CONTEXT_H
+#endif  // TENSORSTACK_ENGINE_CONTEXT_H

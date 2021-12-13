@@ -4,18 +4,18 @@
 #include "backend/base/base_prewhiten.h"
 #include "operator_on_gpu.h"
 
-namespace ts {
-    namespace gpu {
-        class PreWhiten : public OperatorOnGPU<base::PreWhiten> {
-        public:
-            using self = PreWhiten;
-            using supper = OperatorOnGPU<base::PreWhiten>;
+namespace ts
+{
+  namespace gpu
+  {
+    class PreWhiten : public OperatorOnGPU<base::PreWhiten> {
+      public:
+        using self   = PreWhiten;
+        using supper = OperatorOnGPU<base::PreWhiten>;
 
-            void prewhiten(const Tensor &x, Tensor &out) override;
-        };
-    }
-}
+        void prewhiten(const Tensor &x, Tensor &out) override;
+    };
+  }  // namespace gpu
+}  // namespace ts
 
-
-
-#endif //TENSORSTACK_KERNELS_GPU_PREWHITEN_H
+#endif  // TENSORSTACK_KERNELS_GPU_PREWHITEN_H

@@ -4,5 +4,6 @@
 
 #include "core/sync/sync_memory.h"
 
-namespace ts {
+namespace ts
+{
 }

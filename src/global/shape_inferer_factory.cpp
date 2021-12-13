@@ -4,45 +4,43 @@
 
 #include "global/shape_inferer_factory.h"
 
-#include "utils/static.h"
-
-#include <map>
+#include <algorithm>
 #include <cstdlib>
 #include <iostream>
-#include <algorithm>
+#include <map>
 
-namespace ts {
-    static std::map<std::string, ShapeInferer::function> &MapOpInferer() {
-        static std::map<std::string, ShapeInferer::function> map_op_inferer;
-        return map_op_inferer;
-    };
+#include "utils/static.h"
 
-    ShapeInferer::function ShapeInferer::Query(const std::string &op) TS_NOEXCEPT {
-        auto &map_op_inferer = MapOpInferer();
-        auto op_inferer = map_op_inferer.find(op);
-        if (op_inferer != map_op_inferer.end()) {
-            return op_inferer->second;
-        }
-        return ShapeInferer::function(nullptr);
-    }
+namespace ts
+{
+  static std::map<std::string, ShapeInferer::function> &MapOpInferer() {
+    static std::map<std::string, ShapeInferer::function> map_op_inferer;
+    return map_op_inferer;
+  };
 
-    void ShapeInferer::Register(const std::string &op, const function &inferer) TS_NOEXCEPT {
-        auto &map_op_inferer = MapOpInferer();
-        map_op_inferer[op] = inferer;
-    }
+  ShapeInferer::function ShapeInferer::Query(const std::string &op)
+    TS_NOEXCEPT {
+    auto &map_op_inferer = MapOpInferer();
+    auto  op_inferer     = map_op_inferer.find(op);
+    if (op_inferer != map_op_inferer.end()) { return op_inferer->second; }
+    return ShapeInferer::function(nullptr);
+  }
 
-    void ShapeInferer::Clear() {
-        auto &map_op_inferer = MapOpInferer();
-        map_op_inferer.clear();
-    }
+  void ShapeInferer::Register(const std::string &op, const function &inferer)
+    TS_NOEXCEPT {
+    auto &map_op_inferer = MapOpInferer();
+    map_op_inferer [op]  = inferer;
+  }
 
-    std::set<std::string> ShapeInferer::AllKeys() TS_NOEXCEPT {
-        auto &map_op_inferer = MapOpInferer();
-        std::set<std::string> set_op;
-        for (auto &op : map_op_inferer) {
-            set_op.insert(op.first);
-        }
-        return set_op;
-    }
-}
+  void ShapeInferer::Clear() {
+    auto &map_op_inferer = MapOpInferer();
+    map_op_inferer.clear();
+  }
 
+  std::set<std::string> ShapeInferer::AllKeys() TS_NOEXCEPT {
+    auto                 &map_op_inferer = MapOpInferer();
+    std::set<std::string> set_op;
+    for (auto &op: map_op_inferer) { set_op.insert(op.first); }
+    return set_op;
+  }
+}  // namespace ts

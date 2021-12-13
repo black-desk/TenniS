@@ -5,37 +5,42 @@
 #ifndef TENSORSTACK_BACKEND_BASE_BASE_TILE_H
 #define TENSORSTACK_BACKEND_BASE_BASE_TILE_H
 
-#include "operator_on_device.h"
 #include <array>
 
-namespace ts {
-    namespace base {
-        class Tile : public OperatorOnDevice {
-        public:
-            using self = Tile;
-            using supper = OperatorOnDevice;
+#include "operator_on_device.h"
 
-            Tile();
+namespace ts
+{
+  namespace base
+  {
+    class Tile : public OperatorOnDevice {
+      public:
+        using self   = Tile;
+        using supper = OperatorOnDevice;
 
-            void init() override;
+        Tile();
 
-            /**
-             *
-             * @param stack x[1...N]
-             * @return
-             */
-            int run(ts::Stack &stack) override;
+        void init() override;
 
-            int infer(ts::Stack &stack, std::vector<ts::Tensor::Prototype> &output) override;
+        /**
+         *
+         * @param stack x[1...N]
+         * @return
+         */
+        int run(ts::Stack &stack) override;
 
-            virtual void tile(const Tensor &x, const std::vector<int32_t> &repeats, Tensor &out) = 0;
+        int infer(ts::Stack &stack, std::vector<ts::Tensor::Prototype> &output)
+          override;
 
-        private:
-            Shape m_repeats;
-            bool m_zeros;
-        };
-    }
-}
+        virtual void tile(
+          const Tensor               &x,
+          const std::vector<int32_t> &repeats,
+          Tensor                     &out) = 0;
+      private:
+        Shape m_repeats;
+        bool  m_zeros;
+    };
+  }  // namespace base
+}  // namespace ts
 
-
-#endif //TENSORSTACK_BACKEND_BASE_BASE_TILE_H
+#endif  // TENSORSTACK_BACKEND_BASE_BASE_TILE_H

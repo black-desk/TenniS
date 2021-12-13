@@ -3,31 +3,33 @@
 
 #include "operator_on_device.h"
 
-namespace ts {
-    namespace base {
-        /**
-        * Quantize
-        */
-        class Quantize : public OperatorOnDevice {
-        public:
-            using self = Quantize;
-            using supper = OperatorOnDevice;
+namespace ts
+{
+  namespace base
+  {
+    /**
+     * Quantize
+     */
+    class Quantize : public OperatorOnDevice {
+      public:
+        using self   = Quantize;
+        using supper = OperatorOnDevice;
 
-            Quantize();
+        Quantize();
 
-            void init() override;
+        void init() override;
 
-            int run(Stack &stack) override;
+        int run(Stack &stack) override;
 
-            int infer(Stack &stack, std::vector<Tensor::Prototype> &output) override;
+        int infer(
+          Stack &stack, std::vector<Tensor::Prototype> &output) override;
 
-            virtual void quantize(const Tensor &x, std::vector<float> quantize_scales, Tensor &out) = 0;
+        virtual void quantize(
+          const Tensor &x, std::vector<float> quantize_scales, Tensor &out) = 0;
+      private:
+        std::vector<float> m_quantize_scales;
+    };
+  }  // namespace base
+}  // namespace ts
 
-        private:
-            std::vector<float> m_quantize_scales;
-        };
-    }
-}
-
-
-#endif //TENSORSTACK_BACKEND_BASE_QUANTIZE_H
+#endif  // TENSORSTACK_BACKEND_BASE_QUANTIZE_H

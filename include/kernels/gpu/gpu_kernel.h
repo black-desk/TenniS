@@ -10,25 +10,31 @@
 #include "gpu_helper.h"
 #include "utils/log.h"
 
-#define RUN_KERNEL(kernel, grid, block, ...) \
-do { \
-    auto stream = ts::gpu::get_cuda_stream_on_context(); \
-    kernel<<<(grid), (block), 0, stream>>> (__VA_ARGS__); \
-    auto errcode = cudaGetLastError(); \
-    if (errcode) TS_LOG_ERROR << "Got cuda error(" << errcode << ") " << cudaGetErrorString(errcode) << ts::eject; \
-} while (false)
+#define RUN_KERNEL(kernel, grid, block, ...)                                   \
+  do {                                                                         \
+    auto stream = ts::gpu::get_cuda_stream_on_context();                       \
+    kernel<<<(grid), (block), 0, stream>>>(__VA_ARGS__);                       \
+    auto errcode = cudaGetLastError();                                         \
+    if (errcode)                                                               \
+      TS_LOG_ERROR << "Got cuda error(" << errcode << ") "                     \
+                   << cudaGetErrorString(errcode) << ts::eject;                \
+  } while (false)
 
-#define RUN_KERNEL_STREAM(kernel, grid, block, shared, stream, ...) \
-do { \
-    kernel<<<(grid), (block), (shared), (stream)>>> (__VA_ARGS__); \
-    auto errcode = cudaGetLastError(); \
-    if (errcode) TS_LOG_ERROR << "Got cuda error(" << errcode << ") " << cudaGetErrorString(errcode) << ts::eject; \
-} while (false)
+#define RUN_KERNEL_STREAM(kernel, grid, block, shared, stream, ...)            \
+  do {                                                                         \
+    kernel<<<(grid), (block), (shared), (stream)>>>(__VA_ARGS__);              \
+    auto errcode = cudaGetLastError();                                         \
+    if (errcode)                                                               \
+      TS_LOG_ERROR << "Got cuda error(" << errcode << ") "                     \
+                   << cudaGetErrorString(errcode) << ts::eject;                \
+  } while (false)
 
-#define CUDA_CHECK_LAST_ERROR \
-{ \
-    auto errcode = cudaGetLastError(); \
-    if (errcode) TS_LOG_ERROR << "Got cuda error(" << errcode << ") " << cudaGetErrorString(errcode) << ts::eject; \
-}
+#define CUDA_CHECK_LAST_ERROR                                                  \
+  {                                                                            \
+    auto errcode = cudaGetLastError();                                         \
+    if (errcode)                                                               \
+      TS_LOG_ERROR << "Got cuda error(" << errcode << ") "                     \
+                   << cudaGetErrorString(errcode) << ts::eject;                \
+  }
 
-#endif //TENNIS_KERNELS_GPU_GPU_KERNEL_H
+#endif  // TENNIS_KERNELS_GPU_GPU_KERNEL_H

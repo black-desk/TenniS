@@ -7,9 +7,8 @@
 
 #include "api/module.h"
 #include "declaration.h"
-
 #include "module/module.h"
 
 DECLARE_API_TYPE(ts_Module, ts::Module)
 
-#endif //TENNIS_API_DECLARE_MODULE_H
+#endif  // TENNIS_API_DECLARE_MODULE_H

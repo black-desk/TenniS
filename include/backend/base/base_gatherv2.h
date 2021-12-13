@@ -7,32 +7,34 @@
 
 #include "operator_on_device.h"
 
-namespace ts {
-    namespace base {
-        class GatherV2 : public OperatorOnDevice {
-        public:
-            using self = GatherV2;
-            using supper = OperatorOnDevice;
+namespace ts
+{
+  namespace base
+  {
+    class GatherV2 : public OperatorOnDevice {
+      public:
+        using self   = GatherV2;
+        using supper = OperatorOnDevice;
 
-            GatherV2();  // tell me the operator memory
+        GatherV2();  // tell me the operator memory
 
-            void init() override;
+        void init() override;
 
-            int run(Stack &stack) override;
+        int run(Stack &stack) override;
 
-            int infer(Stack &stack, std::vector<Tensor::Prototype> &output) override;
+        int infer(
+          Stack &stack, std::vector<Tensor::Prototype> &output) override;
 
-            /**
-             *
-             * @param x input tensor
-             * @param indices int32 tensor on CPU
-             * @param out
-             */
-            virtual void gather(const Tensor &x, const Tensor &indices, Tensor &out) = 0;
+        /**
+         *
+         * @param x input tensor
+         * @param indices int32 tensor on CPU
+         * @param out
+         */
+        virtual void gather(
+          const Tensor &x, const Tensor &indices, Tensor &out) = 0;
+    };
+  }  // namespace base
+}  // namespace ts
 
-        };
-    }
-}
-
-
-#endif //TENSORSTACK_BACKEND_BASE_BASE_GATHERV2_H
+#endif  // TENSORSTACK_BACKEND_BASE_BASE_GATHERV2_H

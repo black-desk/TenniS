@@ -1,0 +1,36 @@
+option('build_test', type: 'boolean', value: false,
+  description: 'Whether to build test or not')
+option('build_tools', type: 'boolean', value: false,
+  description: 'Whether to build tools or not')
+
+# option('with_dynamic_instruction_support', type: 'boolean', value: false,
+  # description: 'Dynamic support for different instruction sets')
+# option('with_debug_api', type: 'boolean', value: false,
+  # descriptions: 'Whether to enable debug_api or not. If build_test, this will be forced to true')
+
+option('with_cuda', type: 'boolean', value: false,
+  description: 'Whether to build with CUDA or not')
+# option('cuda_arch', type: 'string', value: '',
+  # description: 'Like: 60,61,62. Empty for all arch')
+option('with_openmp', type: 'boolean', value: true,
+  description: 'Whether to build with OpenMP or not')
+option('with_simd', type: 'boolean', value: true, 
+  description: 'Whether to build with SIMD or not')
+
+option('with_neon', type: 'boolean', value: false,
+  description: 'Use NEON')
+option('with_fast_math', type: 'boolean', value: false,
+  description: 'Use fast math (-ffast-math)')
+
+option('on_haswell', type: 'boolean', value: false,
+  description: 'Use both AVX and FMA')
+option('on_sandybridge', type: 'boolean', value: false,
+  description: 'Use AVX but not FMA')
+option('on_pentium', type: 'boolean', value: false,
+  description: 'Use SSE')
+
+option('on_arm', type: 'boolean', value: false, description: '')
+option('on_armv7', type: 'boolean', value: false, description: '')
+
+option('use_profiler', type: 'boolean', value: true, description: 'Use Profiler')
+option('use_hook', type: 'boolean', value: true, description: 'Use Hook')

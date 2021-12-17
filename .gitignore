@@ -21,3 +21,12 @@
 # project files
 /.idea
 /.vim
+
+/obj-x86_64-linux-gnu
+/debian/.debhelper
+/debian/files
+/debian/tmp
+/debian/seeta-tennis1
+/debian/seeta-tennis1.substvars
+/debian/seeta-tennis-dev
+/debian/seeta-tennis-dev.substvars

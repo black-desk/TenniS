@@ -9,6 +9,7 @@
 *.so
 *.a
 /cmake-build-*
+/build
 # binary file
 *.tsm
 *.t
@@ -19,4 +20,4 @@
 *.out
 # project files
 /.idea
-
+/.vim

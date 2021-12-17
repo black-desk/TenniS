@@ -5,6 +5,8 @@
 #ifndef TENSORSTACK_KERNELS_CPU_WINOGRAD_ALGORITHM_H
 #define TENSORSTACK_KERNELS_CPU_WINOGRAD_ALGORITHM_H
 
+#include <backend/common_structure.h>
+
 #include "core/tensor.h"
 
 namespace ts
